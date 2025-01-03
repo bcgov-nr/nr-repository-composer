@@ -125,7 +125,7 @@ jobs:
           curl -s POST ${{ env.BROKER_URL }}/v1/intention/action/patch \
               -H 'Content-Type: application/json' \
               -H 'X-Broker-Token: '"${BUILD_TOKEN}"'' \
-              -d '{"package":{"checksum": "sha256:'${ARTIFACT_SHA256}'", "size": '${ARTIFACT_SIZE}'}}'
+              -d '{"package":{"checksum": "'${ARTIFACT_SHA256}'", "size": '${ARTIFACT_SIZE}'}}'
         env:
           ARTIFACT_SHA256: ${{ steps.publish-artifact.outputs.artifact_sha256 }}
           ARTIFACT_SIZE: ${{ steps.publish-artifact.outputs.artifact_size }}
