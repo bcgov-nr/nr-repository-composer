@@ -1,0 +1,5 @@
+# sets the shared defaults here
+global:
+  name: "knox-provision"
+image:
+  tag: "v4.0.0"

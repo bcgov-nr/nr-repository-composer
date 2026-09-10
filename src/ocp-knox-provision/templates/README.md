@@ -71,12 +71,38 @@ networkPolicy:
           app: vault
 ```
 
+If you want to sync vault secrets to Openshift Secrets
+
+```yaml
+sync:
+  # Enable or disable the sync job
+  enabled: false
+
+  # Schedule for the sync job (cron expression)
+  # Set to empty string to run as a one-time Job (not CronJob)
+  # schedule: ""
+
+  # Vault secret paths to read (comma-separated)
+  # Example: "secret/data/app-config,secret/data/db-credentials"
+  vaultPaths: ""
+
+  # OpenShift secret names to create/update (comma-separated, must match vaultPaths count)
+  # Example: "app-config-secret,db-credentials-secret"
+  secretNames: ""
+
+  # Source secret containing AppRole credentials (for login) which described below
+  sourceSecret:
+    name: "knox-secret"
+    vaultRoleIdKey: "role_id"
+    vaultSecretIdKey: "secret_id"
+```
+
 Before installation, manually add a secret (default: knox-secret) with the keys 'token' (the service broker token) and 'role_id' (the environment's AppRole role id). The token and role id must never be shared or added to source control. Users in Broker with service sudo access (lead developer) can access this data.
 
 Finally, install the cronjob.
 
 ```bash
-helm install knox-provision broker/cronjob-deployment -f dev.yaml
+helm install knox-provision broker/cronjob-deployment -f common.yaml -f dev.yaml
 ```
 
 

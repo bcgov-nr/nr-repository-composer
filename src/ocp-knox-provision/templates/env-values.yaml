@@ -5,3 +5,10 @@ intention:
     environment: "<%= environment %>"
   user:
     name: "<%= intentionUser %>"
+<% if (syncSecretEnabled) { -%>
+
+sync:
+  enabled: true
+  vaultPaths: "<%= syncVaultPaths %>"
+  secretNames: "<%= syncSecretNames %>"
+<% } -%>

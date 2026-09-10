@@ -373,6 +373,30 @@ export const PROMPT_INTENTION_USER: PromptQuestion = {
   default: '',
 };
 
+export const PROMPT_SYNC_SECRET_ENABLED: PromptQuestion = {
+  type: 'confirm',
+  name: 'syncSecretEnabled',
+  message: 'Enable vault secret sync to OpenShift secrets:',
+  default: false,
+};
+
+export const PROMPT_SYNC_VAULT_PATHS: PromptQuestion = {
+  type: 'input',
+  name: 'syncVaultPaths',
+  message: 'Vault secret paths to sync (comma-separated, use dev path in vault as pattern):',
+  default: '',
+  when: (answers) => !!answers.syncSecretEnabled,
+};
+
+export const PROMPT_SYNC_SECRET_NAMES: PromptQuestion = {
+  type: 'input',
+  name: 'syncSecretNames',
+  message:
+    'OpenShift secret names to create/update (comma-separated, must match vault paths count):',
+  default: '',
+  when: (answers) => !!answers.syncSecretEnabled,
+};
+
 export const PROMPT_TO_USAGE: Record<
   string,
   { description: string; example?: string }
@@ -435,6 +459,20 @@ export const PROMPT_TO_USAGE: Record<
   clientId: {
     description:
       'The client ID of the Broker account to use. Leave blank to use manually set BROKER_JWT secret.',
+  },
+  syncSecretEnabled: {
+    description:
+      'Whether to enable syncing vault secrets to OpenShift secrets in the dev environment (initially dev only)',
+  },
+  syncVaultPaths: {
+    description:
+      'Comma-separated list of vault secret paths to read for the sync job',
+    example: 'secret/data/app-config,secret/data/db-credentials',
+  },
+  syncSecretNames: {
+    description:
+      'Comma-separated list of OpenShift secret names to create/update, matching syncVaultPaths order and count',
+    example: 'app-config-secret,db-credentials-secret',
   },
   unitTestsPath: {
     description:
