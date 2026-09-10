@@ -335,6 +335,35 @@ export const pathToProps: PathToProp[] = [
     path: [
       'metadata',
       'annotations',
+      'playbook.io.nrs.gov.bc.ca/syncSecretEnabled',
+    ],
+    prop: 'syncSecretEnabled',
+    writeEmpty: false,
+  },
+  {
+    path: [
+      'metadata',
+      'annotations',
+      'playbook.io.nrs.gov.bc.ca/syncVaultPaths',
+    ],
+    prop: 'syncVaultPaths',
+    writeEmpty: false,
+    csv: true,
+  },
+  {
+    path: [
+      'metadata',
+      'annotations',
+      'playbook.io.nrs.gov.bc.ca/syncSecretNames',
+    ],
+    prop: 'syncSecretNames',
+    writeEmpty: false,
+    csv: true,
+  },
+  {
+    path: [
+      'metadata',
+      'annotations',
       'playbook.io.nrs.gov.bc.ca/publishArtifactSuffix',
     ],
     prop: 'publishArtifactSuffix',
