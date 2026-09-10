@@ -383,7 +383,8 @@ export const PROMPT_SYNC_SECRET_ENABLED: PromptQuestion = {
 export const PROMPT_SYNC_VAULT_PATHS: PromptQuestion = {
   type: 'input',
   name: 'syncVaultPaths',
-  message: 'Vault secret paths to sync (comma-separated, use dev path in vault as pattern):',
+  message:
+    'Vault secret paths to sync (comma-separated, use dev path in vault as pattern):',
   default: '',
   when: (answers) => !!answers.syncSecretEnabled,
 };
